@@ -9,6 +9,14 @@ puts 'Welcome to the authenticator program please sign in :'
 25.times{ print "-"}
 puts
 
+def auth_user(name, password, list_of_users)
+   list_of_users.each do |user| 
+    if user[:name] == name && user[:password] == password
+      return user
+    end
+  end
+  "Credentials were not correct" #Last return implied
+end
 attempts = 1
 
 while attempts < 4
@@ -17,15 +25,8 @@ while attempts < 4
   print "Password: "
   password = gets.chomp
 
-  users.each do |user| 
-    if user[:name] == username && user[:password] == password
-      puts user
-      break
-    else 
-      puts "Credentials were not correct"
-  end
-end
-
+  authentication = auth_user(username, password, users)
+  puts authentication
   puts "Press n to quit or any other key to continue"
   input = gets.chomp.downcase
   break if input == 'n'
