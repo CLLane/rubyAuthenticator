@@ -8,9 +8,7 @@ puts 'Welcome to the authenticator program please sign in :'
 
 25.times{ print "-"}
 puts
-puts "Username :"
-# user_name = gets.chomp
-# user_name_check = users.select{|user| user[:name] == user_name}
+
 attempts = 1
 
 while attempts < 4
@@ -18,6 +16,12 @@ while attempts < 4
   username = gets.chomp
   print "Password: "
   password = gets.chomp
+
+  users.each do |user| 
+    if user[:username] == username && user[:password] == password
+      puts user
+  end
+
   puts "Press n to quit or any other key to continue"
   input = gets.chomp.downcase
   break if input == 'n'
